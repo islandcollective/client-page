@@ -1,0 +1,21 @@
+let config = {
+	client: 'Andrew',
+	files: [
+		{
+			name: 'vision',
+			file: 'vision.pdf'
+		},
+		{
+			name: 'roadmap',
+			file: 'roadmap.pdf'
+		},
+		{
+			name: 'you',
+			file: 'you.pdf'
+		},
+		{
+			name: 'portfolio',
+			file: 'portfolio.pdf'
+		}
+	]
+}

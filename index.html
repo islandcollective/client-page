@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="https://use.typekit.net/dlb2cbu.css">
+	<style>
+
+		*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+			all: unset;
+			display: revert;
+		}
+
+		html {
+			font-size: 18px;
+		}
+
+		body {
+			background-color: #F8F6F2;
+			background-image: url('img/logomark.svg');
+			background-size: 250% auto;
+			background-repeat: no-repeat;
+			background-position: left -400px top -200px;
+			background-attachment: fixed;
+			font-family: "sofia-pro", sans-serif;
+			color: #00324d;
+		}
+
+		a {
+			cursor: pointer;
+		}
+
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+
+		h1 {
+			font-size: 3rem;
+			font-weight: 700;
+		}
+
+		h2 {
+			font-size: 2rem;
+			font-weight: 300;
+			margin-bottom: 1rem;
+		}
+
+		h3 {
+			font-size: 1.3rem;
+			font-weight: 700;
+			margin-bottom: 0.5rem;
+		}
+
+		h4 {
+			color: #12314a;
+			font-size: 1.5rem;
+			font-weight: 400;
+		}
+
+		p {
+			margin-right: 5rem;
+		}
+
+		#logo {
+			width: 300px;
+			height: auto;
+		}
+
+		#container {
+			padding-left: 2rem;
+			padding-right: 2rem;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		main {
+			flex: 0 0 65%;
+		}
+
+		aside {
+			flex: 0 0 30%;
+
+		}
+
+		.row {
+			display: flex;
+			margin-left: -1rem;
+			margin-right: -1rem;
+		}
+
+		.col {
+			padding-left: 1rem;
+			padding-right: 1rem;
+			flex: 0 0 auto;
+		}
+
+		.col-half {
+			flex: 1 1 50%;
+		}
+
+		.justify-between {
+			justify-content: space-between;
+		}
+
+		.align-center {
+			align-items: center;
+		}
+
+		.py-1 {
+			padding-top: 0.5rem;
+			padding-bottom: 0.5rem;
+		}
+
+		.py-2 {
+			padding-top: 1rem;
+			padding-bottom: 1rem;
+		}
+
+		.my-1 {
+			margin-top: 0.5rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.my-2 {
+			margin-top: 1rem;
+			margin-bottom: 1rem;
+		}
+
+		.pt-1 {
+			padding-top: 0.5rem;
+		}
+
+		.pt-2 {
+			padding-top: 1rem;
+		}
+
+		.pb-1 {
+			padding-bottom: 0.5rem;
+		}
+
+		.pb-2 {
+			padding-bottom: 1rem;
+		}
+
+		.mt-1 {
+			margin-top: 0.5rem;
+		}
+
+		.mt-2 {
+			margin-top: 1rem;
+		}
+
+		.mb-1 {
+			margin-bottom: 0.5rem;
+		}
+
+		.mb-2 {
+			margin-bottom: 1rem;
+		}
+
+		p {
+			margin-bottom: 1.5rem;
+		}
+
+		.btn {
+			display: inline-block;
+			width: auto;
+			background-color: #00324D;
+			color: #fff;
+			padding: 0.75rem 2rem;
+			font-weight: 300;
+			font-size: 1.2rem;
+			border-radius: 2rem;
+		}
+
+		@media (max-width: 1079px) {
+			#container {
+				display: block;
+			}
+		}
+
+		@media (max-width: 767px) {
+			.row {
+				display: block;
+			}
+		}
+
+
+	</style>
+	<script src="config.json"></script>
+</head>
+<body>
+	<div id="container">
+		<aside class="pt-2">
+			<img src="img/logo.png" alt="Cliff Russell &amp; Associates" id="logo" />
+			<h1 class="py-2">Hi <span id="name"></span>!</h1>
+			<h2>Explore Your Financial Journey</h2>
+		</aside>
+		<main class="pt-2">
+			<div class="row">
+				<div class="col col-half my-2 py-2">
+					<img src="img/vision.png" alt="Vision" class="mb-1" />
+					<h3>Vision</h3>
+					<a class="btn" target="_blank" href="" id="vision-button">Open Vision</a>
+				</div>
+				<div class="col col-half my-2 py-2">
+					<img src="img/roadmap.png" alt="Roadmap" class="mb-1" />
+					<h3>Roadmap</h3>
+					<a class="btn" target="_blank" href="" id="roadmap-button">View Roadmap</a>
+				</div>
+			</div>
+			<div class="row mb-2">
+				<div class="col col-half my-2 py-2">
+					<img src="img/you.png" alt="Understanding You" class="mb-1" />
+					<h3>Understanding You</h3>
+					<a class="btn" target="_blank" href="" id="you-button">View Profile</a>
+				</div>
+				<div class="col col-half my-2 py-2">
+					<img src="img/portfolio.png" alt="Investment Portfolio" class="mb-1" />
+					<h3>Investment Portfolio</h3>
+					<a class="btn" target="_blank" target="_blank" href="" id="roadmap-button">View Portfolio</a>
+				</div>
+			</div>
+		</main>
+	</div>
+
+</body>
+<script>
+
+	const url = window.location.href;
+	const directory = url.substring(0, url.lastIndexOf('/')+1);
+
+	document.getElementById('name').innerHTML = config.client;
+	config.files.forEach(function(file){
+		let el = document.getElementById(file.name + '-button');
+		if( el ) {
+			el.href = 'files/' + file.file;
+		}
+	});
+
+</script>
+</html>
