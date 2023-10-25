@@ -12,6 +12,11 @@
 			display: revert;
 		}
 
+		html, body {
+			overflow: hidden;
+			height: 100%;
+		}
+
 		html {
 			font-size: 18px;
 		}
@@ -25,6 +30,8 @@
 			background-attachment: fixed;
 			font-family: "sofia-pro", sans-serif;
 			color: #00324d;
+			display: flex;
+			align-items: center;
 		}
 
 		a {
@@ -64,15 +71,18 @@
 		}
 
 		#logo {
-			width: 300px;
+			max-width: 100%;
 			height: auto;
 		}
 
 		#container {
+			max-width: 1600px;
+			margin: auto;
 			padding-left: 2rem;
 			padding-right: 2rem;
 			display: flex;
 			justify-content: space-between;
+			box-sizing: border-box;
 		}
 
 		main {
@@ -81,7 +91,11 @@
 
 		aside {
 			flex: 0 0 30%;
-
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			padding-right: 3rem;
+			box-sizing: border-box;
 		}
 
 		.row {
@@ -94,6 +108,7 @@
 			padding-left: 1rem;
 			padding-right: 1rem;
 			flex: 0 0 auto;
+			text-align: center;
 		}
 
 		.col-half {
@@ -165,14 +180,15 @@
 		}
 
 		.btn {
-			display: inline-block;
+			margin-top: -0.5rem;
+			display: block;
 			width: auto;
 			background-color: #00324D;
 			color: #fff;
-			padding: 0.75rem 2rem;
+			padding: 1rem 2rem;
 			font-weight: 300;
-			font-size: 1.2rem;
-			border-radius: 2rem;
+			font-size: 1.5rem;
+			border-radius: 0 0 1rem 1rem;
 		}
 
 		@media (max-width: 1079px) {
@@ -186,6 +202,17 @@
 				display: block;
 			}
 		}
+		@media (min-height: 912px) {
+			#container {
+				max-width: 1920px;
+			}
+		}
+
+		@media (max-height: 749px) {
+			body {
+				overflow: auto;
+			}
+		}
 
 
 	</style>
@@ -195,32 +222,38 @@
 	<div id="container">
 		<aside class="pt-2">
 			<img src="img/logo.png" alt="Cliff Russell &amp; Associates" id="logo" />
-			<h1 class="py-2">Hi <span id="name"></span>!</h1>
-			<h2>Explore Your Financial Journey</h2>
+			<div class="mb-2">
+				<h1 class="py-2">Hi <span id="name"></span>!</h1>
+				<h2>Explore Your Financial Journey</h2>
+			</div>
 		</aside>
-		<main class="pt-2">
+		<main>
 			<div class="row">
-				<div class="col col-half my-2 py-2">
-					<img src="img/vision.png" alt="Vision" class="mb-1" />
-					<h3>Vision</h3>
-					<a class="btn" target="_blank" href="" id="vision-button">Open Vision</a>
+				<div class="col col-half my-2">
+					<a href="" id="vision-button">
+						<img src="img/vision.png" alt="Vision" />
+						<span class="btn">Open Vision</span>
+					</a>
 				</div>
-				<div class="col col-half my-2 py-2">
-					<img src="img/roadmap.png" alt="Roadmap" class="mb-1" />
-					<h3>Roadmap</h3>
-					<a class="btn" target="_blank" href="" id="roadmap-button">View Roadmap</a>
+				<div class="col col-half my-2">
+					<a href="" id="roadmap-button">
+						<img src="img/roadmap.png" alt="Roadmap" />
+						<span class="btn">View Roadmap</span>
+					</a>
 				</div>
 			</div>
-			<div class="row mb-2">
-				<div class="col col-half my-2 py-2">
-					<img src="img/you.png" alt="Understanding You" class="mb-1" />
-					<h3>Understanding You</h3>
-					<a class="btn" target="_blank" href="" id="you-button">View Profile</a>
+			<div class="row">
+				<div class="col col-half my-2">
+					<a href="" id="you-button">
+						<img src="img/you.png" alt="Understanding You" />
+						<span class="btn">Understanding You</span>
+					</a>
 				</div>
-				<div class="col col-half my-2 py-2">
-					<img src="img/portfolio.png" alt="Investment Portfolio" class="mb-1" />
-					<h3>Investment Portfolio</h3>
-					<a class="btn" target="_blank" target="_blank" href="" id="roadmap-button">View Portfolio</a>
+				<div class="col col-half my-2">
+					<a href="" id="portfolio-button">
+						<img src="img/portfolio.png" alt="Investment Portfolio" />
+						<span class="btn">View Portfolio</span>
+					</a>
 				</div>
 			</div>
 		</main>
@@ -232,11 +265,13 @@
 	const url = window.location.href;
 	const directory = url.substring(0, url.lastIndexOf('/')+1);
 
+	document.title = config.client + '\'s - Financial Journey';
+
 	document.getElementById('name').innerHTML = config.client;
 	config.files.forEach(function(file){
 		let el = document.getElementById(file.name + '-button');
 		if( el ) {
-			el.href = 'files/' + file.file;
+			el.href = file.file;
 		}
 	});
 

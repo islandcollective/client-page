@@ -3,19 +3,19 @@ let config = {
 	files: [
 		{
 			name: 'vision',
-			file: 'vision.pdf'
+			file: 'files/vision.pdf'
 		},
 		{
 			name: 'roadmap',
-			file: 'roadmap.pdf'
+			file: 'files/roadmap.pdf'
 		},
 		{
 			name: 'you',
-			file: 'you.pdf'
+			file: 'Understanding You'
 		},
 		{
 			name: 'portfolio',
-			file: 'portfolio.pdf'
+			file: 'files/portfolio.pdf'
 		}
 	]
 }
